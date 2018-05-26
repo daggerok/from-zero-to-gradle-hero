@@ -1,0 +1,31 @@
+apply plugin: "org.asciidoctor.convert"
+
+asciidoctor {
+  //sourceDir = project.file("$projectDir/src/docs/asciidoc")
+  sources {
+    include "documentation.adoc"
+  }
+  outputDir = project.file("$buildDir/asciidoc")
+  attributes toc: "left",
+      doctype: "book",
+      encoding: "utf-8",
+      linkattrs: true,
+      numbered: true,
+      sectanchors: true,
+      sectlink: true,
+      idprefix: "",
+      docinfo1: "",
+      icons: "font",
+      idseparator: "-",
+      setanchors: "true",
+      imagesdir: "./static/images",
+      "source-highlighter": "coderay",
+      "toc-title": "Table of Contents",
+      "build-gradle": file("build.gradle"),
+      "github-url": "https://github.com/daggerok/from-zero-to-gradle-hero",
+      "travis-url": "https://travis-ci.org/daggerok/from-zero-to-gradle-hero.svg?branch=master"/*,
+      sourcedir: project.sourceSets.main.java.srcDirs[0]*/
+
+  logDocuments = true
+  backends "pdf", "html5"
+}

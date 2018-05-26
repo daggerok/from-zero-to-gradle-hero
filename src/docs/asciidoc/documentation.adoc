@@ -1,0 +1,25 @@
+= My super awesome app {project-name} ({project-version})
+Maksim Kostromin <daggerok@gmail.com>
+{docdatetime}
+:doctype: book
+:toc: left
+:toclevels: 4
+:source-highlighter: prettify
+:numbered:
+:icons: font
+:hide-uri-scheme:
+:revnumber: {project-version}
+:example-caption!:
+
+ifdef::backend-html5[image:{travis-url}["Build Status", link="{github-url}"]]
+
+//[discrete]
+
+include::../../../build/from-zero-to-gradle-hero/adoc/USER_GUIDE.adoc[tags=content]
+include::../../../build/from-zero-to-gradle-hero/adoc/ADMIN_GUIDE.adoc[tags=content]
+
+links:
+
+- link:https://github.com/asciidoctor/asciidoctor/issues/1259[ifdef]
+- link:https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/conditional-preprocessor-directives.adoc[conditional preprocessor directives]
+- link:https://asciidoctor.org/docs/user-manual/#escaping-unconstrained-quotes[escaping unconstrained quotes]

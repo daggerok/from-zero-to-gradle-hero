@@ -1,0 +1,19 @@
+###############################################################################
+#                                                                             #
+#  spring boot properties                                                     #
+#                                                                             #
+#  configuration example:                                                     #
+#                                                                             #
+#    server:                                                                  #
+#      port: 8001                                                             #                                                             #
+#                                                                             #
+#  required configuration: false                                              #
+#                                                                             #
+###############################################################################
+
+#server:
+#  port: 8080
+
+spring:
+  application:
+    name: @ARCHIVES_BASE_NAME@-@VERSION@

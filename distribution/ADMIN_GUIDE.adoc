@@ -1,0 +1,19 @@
+= This is an ADMIN GUIDE
+version: @VERSION@
+
+//tag::content[]
+
+== Administration / Installation Guide
+
+=== Prerequisites
+
+- java 8
+- bash terminal
+
+and bla-bla-bla...
+
+//end::content[]
+
+////
+ADMIN_GUIDE.adoc
+////

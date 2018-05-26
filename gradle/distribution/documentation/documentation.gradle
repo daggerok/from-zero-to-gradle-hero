@@ -1,0 +1,39 @@
+/**
+ * Documentation
+ */
+
+apply from: "$rootDir/gradle/distribution/documentation/asciidoctor.gradle"
+
+def substitutions = [
+    "VERSION": project.version,
+    "ARCHIVES_BASE_NAME": project.archivesBaseName,
+]
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+task distCopy(type: Copy) {
+  description "Copying distribution files and replacing substitutions with actual values"
+
+  shouldRunAfter clean
+
+  from("$projectDir/distribution") {
+    include "*.adoc"
+    filter(ReplaceTokens, tokens: substitutions)
+    into "./adoc"
+  }
+  // copy images for correct html documentation rendering
+  from("$projectDir/src/docs/asciidoc/static/images") {
+    include "*.ico"
+    into "./html5/images"
+  }
+  from("$projectDir/distribution") {
+    include "application.yaml"
+    include "INSTALL"
+    filter(ReplaceTokens, tokens: substitutions)
+  }
+  into "./build/$project.archivesBaseName"
+  includeEmptyDirs = true
+}
+
+asciidoctor.dependsOn distCopy
+asciidoctor.shouldRunAfter clean, distCopy

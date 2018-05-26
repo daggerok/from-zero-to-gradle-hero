@@ -1,0 +1,60 @@
+/**
+ * Distribution
+ */
+
+task distDocs(type: Copy) {
+  description "Copy converted documentation html5/pdf files to standalone public/docs path and into distribution"
+
+  dependsOn asciidoctor
+  shouldRunAfter clean, asciidoctor
+
+  [
+      "html5",
+      "pdf",
+
+  ].each { backend ->
+    from("$buildDir/asciidoc/$backend") {
+      into "$backend"
+    }
+  }
+
+  into "./build/$project.archivesBaseName"
+}
+
+task webFluxDocs(type: Copy) {
+  description "Copy converted documentation html5/pdf files to webflux public folder to serve"
+
+  dependsOn distDocs
+  shouldRunAfter clean, distDocs
+
+  [
+      "html5",
+      "pdf",
+
+  ].each {
+    from("$buildDir/$project.archivesBaseName/$it") {
+      into "./docs"
+    }
+  }
+
+  into "./src/main/resources/public"
+}
+
+// make sure application packaged with all converted and copied files from asciidoc converter
+processResources.dependsOn webFluxDocs
+processResources.shouldRunAfter webFluxDocs
+
+task distZip(type: Zip) {
+  description "Make zip archive with application binary, libraries and documentation"
+
+  dependsOn processResources, assemble
+  shouldRunAfter clean, processResources, assemble
+
+  destinationDir project.file("$rootDir.absolutePath/dist")
+  //from "$project.buildDir/libs/${project.archivesBaseName}-${project.version}.jar"
+  from "$project.buildDir/$project.archivesBaseName"
+  from "$project.buildDir/libs"
+  into "./$project.archivesBaseName"
+}
+
+task dist(dependsOn: distZip)

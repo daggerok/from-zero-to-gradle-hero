@@ -1,0 +1,26 @@
+                              INSTALLATION GUIDE
+
+NOTE: all steps do using application owner user (for example:
+      @ARCHIVES_BASE_NAME@).
+
+  $ sudo su -- @ARCHIVES_BASE_NAME@
+
+NOTE: please, skip previous step if you are using same user for application
+      run
+
+1. unpack application distribution archive into some folder:
+
+  $ unzip /path/to/@ARCHIVES_BASE_NAME@-@VERSION@.zip -d /tmp/
+
+2. change directory inside unpacked folder where application.yaml file is
+   locating:
+
+  $ cd /tmp/@ARCHIVES_BASE_NAME@
+
+3. update application configuration file application.yaml if needed:
+
+  $ vi ./application.yaml
+
+4. run application:
+
+  $ bash ./@ARCHIVES_BASE_NAME@-@VERSION@.jar

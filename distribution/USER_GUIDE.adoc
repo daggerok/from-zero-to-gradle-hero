@@ -1,0 +1,15 @@
+= This is a USER GUIDE
+version: @VERSION@
+
+//tag::content[]
+
+== User Guide
+
+ololo
+trololo...
+
+//end::content[]
+
+////
+USER_GUIDE.adoc
+////
